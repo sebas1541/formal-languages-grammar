@@ -81,6 +81,8 @@ class GrammarService:
                 raise DomainValidationError(
                     f"Left symbol '{rule.left}' must be a known non-terminal"
                 )
+            if EPSILON_SYMBOL in rule.right and len(rule.right) > 1:
+                raise DomainValidationError("Epsilon productions must be used alone")
             for symbol in rule.right:
                 if symbol == EPSILON_SYMBOL:
                     continue
