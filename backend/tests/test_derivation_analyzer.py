@@ -38,6 +38,18 @@ def sum_grammar() -> Grammar:
     )
 
 
+def epsilon_grammar() -> Grammar:
+    return Grammar(
+        id=3,
+        name="Epsilon",
+        grammar_type=GrammarType.TYPE_2,
+        non_terminals=("S",),
+        terminals=("a",),
+        start_symbol="S",
+        productions=(ProductionRule.from_iterables("S", [EPSILON_SYMBOL]),),
+    )
+
+
 def test_balanced_string_is_accepted() -> None:
     analyzer = DerivationAnalyzer(parentheses_grammar())
     outcome = analyzer.parse("aabb")
@@ -61,3 +73,15 @@ def test_generation_orders_by_length() -> None:
 def test_multisymbol_terminals_are_tokenized() -> None:
     analyzer = DerivationAnalyzer(sum_grammar())
     assert analyzer.parse("id + id").accepted is True
+
+
+def test_parse_accepts_explicit_epsilon_symbol() -> None:
+    analyzer = DerivationAnalyzer(epsilon_grammar())
+    assert analyzer.parse("ε").accepted is True
+    assert analyzer.parse("").accepted is True
+
+
+def test_generate_requires_positive_limit() -> None:
+    analyzer = DerivationAnalyzer(parentheses_grammar())
+    with pytest.raises(DomainValidationError):
+        analyzer.generate(limit=0)
