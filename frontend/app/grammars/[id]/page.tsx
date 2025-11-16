@@ -12,6 +12,7 @@ import { Badge } from "@/components/ui/badge";
 import { FiCheck, FiX, FiZap, FiCode, FiChevronLeft } from "react-icons/fi";
 import Link from "next/link";
 import { DerivationTree } from "@/components/grammars/DerivationTree";
+import { PageTransition } from "@/components/ui/page-transition";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -103,7 +104,7 @@ export default function GrammarDetailPage({ params }: PageProps) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50/30">
       <AppHeader />
-
+      <PageTransition>
       <div className="container mx-auto px-4 sm:px-6 py-8">
         {/* Back button and header */}
         <div className="mb-6">
@@ -206,7 +207,8 @@ export default function GrammarDetailPage({ params }: PageProps) {
                       {generatedStrings.map((str, idx) => (
                         <div
                           key={idx}
-                          className="px-3 py-2 bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl font-mono text-sm"
+                          className="px-3 py-2 bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl font-mono text-sm animate-in fade-in slide-in-from-left-2 hover:bg-gradient-to-r hover:from-purple-100 hover:to-blue-100 transition-all duration-200"
+                          style={{ animationDelay: `${idx * 30}ms`, animationFillMode: 'backwards' }}
                         >
                           {str}
                         </div>
@@ -250,7 +252,7 @@ export default function GrammarDetailPage({ params }: PageProps) {
 
                 {parseResult && (
                   <div
-                    className={`p-4 rounded-xl border-2 ${
+                    className={`p-4 rounded-xl border-2 animate-in fade-in slide-in-from-top-4 duration-500 ${
                       parseResult.accepted
                         ? "bg-green-50 border-green-200"
                         : "bg-red-50 border-red-200"
@@ -297,6 +299,7 @@ export default function GrammarDetailPage({ params }: PageProps) {
           </div>
         </div>
       </div>
+      </PageTransition>
     </div>
   );
 }

@@ -108,7 +108,7 @@ export function DerivationTree({ tree }: DerivationTreeProps) {
   }, [tree]);
 
   return (
-    <div className="w-full overflow-x-auto bg-gradient-to-br from-blue-50/50 to-purple-50/50 rounded-2xl p-6 border border-gray-200">
+    <div className="w-full overflow-x-auto bg-gradient-to-br from-blue-50/50 to-purple-50/50 rounded-2xl p-6 border border-gray-200 animate-in fade-in slide-in-from-bottom-4 duration-700">
       <div ref={canvasRef} className="min-h-[300px]" />
     </div>
   );

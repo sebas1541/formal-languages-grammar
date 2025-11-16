@@ -11,6 +11,7 @@ import Link from "next/link";
 import { CreateGrammarDialog } from "@/components/grammars/CreateGrammarDialog";
 import { SeedGrammarsDialog } from "@/components/grammars/SeedGrammarsDialog";
 import { AppHeader } from "@/components/layout/AppHeader";
+import { PageTransition } from "@/components/ui/page-transition";
 
 export default function GrammarsPage() {
   const [createDialogOpen, setCreateDialogOpen] = useState(false);
@@ -58,6 +59,7 @@ export default function GrammarsPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50/30">
       <AppHeader />
+      <PageTransition>
 
       <div className="container mx-auto px-4 sm:px-6 py-8">
         {/* Header */}
@@ -133,10 +135,11 @@ export default function GrammarsPage() {
         {/* Grammars Grid */}
         {grammars && grammars.length > 0 && (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {grammars.map((grammar) => (
+            {grammars.map((grammar, index) => (
               <Card
                 key={grammar.id}
-                className="bg-white/80 backdrop-blur-sm border-gray-200/50 hover:shadow-lg transition-all duration-200"
+                className="bg-white/80 backdrop-blur-sm border-gray-200/50 hover:shadow-md hover:border-gray-300/50 transition-all duration-300 animate-in fade-in slide-in-from-bottom-4"
+                style={{ animationDelay: `${index * 50}ms`, animationFillMode: 'backwards' }}
               >
                 <CardHeader>
                   <div className="flex items-start justify-between mb-2">
@@ -157,8 +160,8 @@ export default function GrammarsPage() {
 
                   {/* Actions */}
                   <div className="flex gap-2">
-                    <Link href={`/grammars/${grammar.id}`} className="flex-1">
-                      <Button variant="outline" className="w-full" size="sm">
+                    <Link href={`/grammars/${grammar.id}`} className="flex-1 group">
+                      <Button variant="outline" className="w-full group-hover:border-blue-400 group-hover:text-blue-600 transition-all duration-300" size="sm">
                         <FiEdit className="mr-2 h-4 w-4" />
                         Analizar
                       </Button>
@@ -201,6 +204,7 @@ export default function GrammarsPage() {
         open={seedDialogOpen}
         onOpenChange={setSeedDialogOpen}
       />
+      </PageTransition>
     </div>
   );
 }

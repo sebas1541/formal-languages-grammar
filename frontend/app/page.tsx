@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { FiBook, FiCode, FiFileText, FiZap } from "react-icons/fi";
+import { PageTransition } from "@/components/ui/page-transition";
 
 export default function Home() {
   return (
@@ -29,6 +30,7 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
+      <PageTransition>
       <main className="container mx-auto px-4 sm:px-6 py-16">
         <div className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
@@ -41,7 +43,7 @@ export default function Home() {
 
         {/* Features Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          <Card className="bg-white/80 backdrop-blur-sm border-gray-200/50 hover:shadow-lg transition-all duration-200">
+          <Card className="bg-white/80 backdrop-blur-sm border-gray-200/50 hover:shadow-md hover:border-gray-300/50 transition-all duration-300 animate-in fade-in slide-in-from-bottom-4" style={{ animationDelay: '100ms', animationFillMode: 'backwards' }}>
             <CardHeader>
               <div className="h-12 w-12 bg-blue-100 rounded-2xl flex items-center justify-center mb-4">
                 <FiFileText className="h-6 w-6 text-blue-600" />
@@ -53,7 +55,7 @@ export default function Home() {
             </CardHeader>
           </Card>
 
-          <Card className="bg-white/80 backdrop-blur-sm border-gray-200/50 hover:shadow-lg transition-all duration-200">
+          <Card className="bg-white/80 backdrop-blur-sm border-gray-200/50 hover:shadow-md hover:border-gray-300/50 transition-all duration-300 animate-in fade-in slide-in-from-bottom-4" style={{ animationDelay: '200ms', animationFillMode: 'backwards' }}>
             <CardHeader>
               <div className="h-12 w-12 bg-green-100 rounded-2xl flex items-center justify-center mb-4">
                 <FiZap className="h-6 w-6 text-green-600" />
@@ -65,7 +67,7 @@ export default function Home() {
             </CardHeader>
           </Card>
 
-          <Card className="bg-white/80 backdrop-blur-sm border-gray-200/50 hover:shadow-lg transition-all duration-200">
+          <Card className="bg-white/80 backdrop-blur-sm border-gray-200/50 hover:shadow-md hover:border-gray-300/50 transition-all duration-300 animate-in fade-in slide-in-from-bottom-4" style={{ animationDelay: '300ms', animationFillMode: 'backwards' }}>
             <CardHeader>
               <div className="h-12 w-12 bg-purple-100 rounded-2xl flex items-center justify-center mb-4">
                 <FiBook className="h-6 w-6 text-purple-600" />
@@ -77,7 +79,7 @@ export default function Home() {
             </CardHeader>
           </Card>
 
-          <Card className="bg-white/80 backdrop-blur-sm border-gray-200/50 hover:shadow-lg transition-all duration-200">
+          <Card className="bg-white/80 backdrop-blur-sm border-gray-200/50 hover:shadow-md hover:border-gray-300/50 transition-all duration-300 animate-in fade-in slide-in-from-bottom-4" style={{ animationDelay: '400ms', animationFillMode: 'backwards' }}>
             <CardHeader>
               <div className="h-12 w-12 bg-orange-100 rounded-2xl flex items-center justify-center mb-4">
                 <FiCode className="h-6 w-6 text-orange-600" />
@@ -91,7 +93,7 @@ export default function Home() {
         </div>
 
         {/* CTA Section */}
-        <div className="bg-gradient-to-r from-blue-50/80 to-purple-50/80 border border-blue-200/30 rounded-2xl p-8 text-center backdrop-blur-sm">
+        <div className="bg-gradient-to-r from-blue-50/80 to-purple-50/80 border border-blue-200/30 rounded-2xl p-8 text-center backdrop-blur-sm animate-in fade-in slide-in-from-bottom-4 duration-700">
           <h3 className="text-2xl font-bold text-gray-900 mb-3">
             ¿Listo para comenzar?
           </h3>
@@ -105,6 +107,7 @@ export default function Home() {
           </Link>
         </div>
       </main>
+      </PageTransition>
 
       {/* Footer */}
       <footer className="border-t border-gray-200/50 mt-16">

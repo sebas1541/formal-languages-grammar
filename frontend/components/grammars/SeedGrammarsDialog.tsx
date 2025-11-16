@@ -78,12 +78,13 @@ export function SeedGrammarsDialog({ open, onOpenChange }: SeedGrammarsDialogPro
 
           {/* Seeds Grid */}
           <div className="grid md:grid-cols-2 gap-4">
-            {grammarSeeds.map((seed) => (
+            {grammarSeeds.map((seed, index) => (
               <Card
                 key={seed.name}
-                className={`bg-white/80 backdrop-blur-sm border-gray-200/50 transition-all ${
+                className={`bg-white/80 backdrop-blur-sm border-gray-200/50 transition-all duration-300 hover:shadow-md hover:border-gray-300/50 animate-in fade-in slide-in-from-bottom-3 ${
                   isImported(seed.name) ? "border-green-400 bg-green-50/50" : ""
                 }`}
+                style={{ animationDelay: `${index * 50}ms`, animationFillMode: 'backwards' }}
               >
                 <CardHeader>
                   <div className="flex items-start justify-between gap-2">
