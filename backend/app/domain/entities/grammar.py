@@ -16,7 +16,7 @@ class GrammarType(str, Enum):
     TYPE_3 = "type_3"
 
 
-@dataclass(slots=True, frozen=True)
+@dataclass(frozen=True)
 class ProductionRule:
     """Grammar production rule."""
 
@@ -31,7 +31,7 @@ class ProductionRule:
         return ProductionRule(left=left, right=tuple(right))
 
 
-@dataclass(slots=True, frozen=True)
+@dataclass(frozen=True)
 class Grammar:
     """Aggregate root that represents a formal grammar."""
 
@@ -56,4 +56,3 @@ class Grammar:
 
     def with_id(self, grammar_id: int) -> "Grammar":
         return replace(self, id=grammar_id)
-

@@ -7,7 +7,7 @@ from typing import List, Optional, Tuple
 from app.domain.entities.grammar import ProductionRule
 
 
-@dataclass(slots=True, frozen=True)
+@dataclass(frozen=True)
 class DerivationStep:
     """Represents the application of a production rule at a tree path."""
 
@@ -15,7 +15,7 @@ class DerivationStep:
     production: ProductionRule
 
 
-@dataclass(slots=True)
+@dataclass
 class ParseTreeNode:
     """Node for derivation trees."""
 
@@ -23,7 +23,7 @@ class ParseTreeNode:
     children: List["ParseTreeNode"] = field(default_factory=list)
 
 
-@dataclass(slots=True)
+@dataclass
 class ParseOutcome:
     """Result of attempting to parse a string."""
 
@@ -32,7 +32,7 @@ class ParseOutcome:
     steps: int
 
 
-@dataclass(slots=True)
+@dataclass
 class GenerationOutcome:
     """Generated strings from a grammar."""
 
