@@ -83,7 +83,7 @@ def parse_string(
 @router.get("/{grammar_id}/generate", response_model=GenerationResponseDTO)
 def generate_strings(
     grammar_id: int,
-    limit: int = Query(10, ge=1, le=100, description="Number of strings to generate"),
+    limit: int = Query(10, description="Number of strings to generate"),
     service: GrammarAnalysisService = Depends(get_analysis_service),
 ) -> GenerationResponseDTO:
     return service.generate_strings(grammar_id, limit)

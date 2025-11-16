@@ -61,8 +61,6 @@ class GrammarBaseDTO(BaseModel):
     def check_relationships(self) -> "GrammarBaseDTO":
         terminals = set(self.terminals)
         non_terminals = set(self.non_terminals)
-        if self.start_symbol not in non_terminals:
-            raise ValueError("Start symbol must belong to the non-terminal set")
         if terminals.intersection(non_terminals):
             raise ValueError("Terminals and non-terminals must be disjoint")
         return self
