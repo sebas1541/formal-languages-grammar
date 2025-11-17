@@ -27,7 +27,7 @@ export function SeedGrammarsDialog({ open, onOpenChange }: SeedGrammarsDialogPro
 
   const importMutation = useMutation({
     mutationFn: async (seed: GrammarSeed) => {
-      const { examples, ...grammarData } = seed;
+      const { examples, description, ...grammarData } = seed;
       return grammarApi.create(grammarData);
     },
     onSuccess: (_, seed) => {

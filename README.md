@@ -12,7 +12,7 @@ A web application for defining, analyzing, and visualizing formal grammars (Type
 
 ## Quick Start
 
-### Backend (with Docker)
+### 1. Start Backend (with Docker)
 
 ```bash
 # Optional: Add your Gemini API key for AI features
@@ -20,14 +20,18 @@ cp .env.example .env
 # Edit .env and add your API key
 
 # Start backend
-docker-compose up
+docker-compose up -d
 
-# Backend API will be at http://localhost:8000/docs
+# Verify it's running
+curl http://localhost:8000/api/v1/grammars/
+# Should return: []
+
+# Or visit http://localhost:8000/docs for API documentation
 ```
 
 Docker handles the database and dependencies automatically.
 
-### Frontend
+### 2. Start Frontend
 
 ```bash
 cd frontend
@@ -36,6 +40,8 @@ npm run dev
 
 # Frontend will be at http://localhost:3000
 ```
+
+**Important**: Backend must be running on port 8000 for frontend to connect.
 
 ## Manual Setup (without Docker)
 
