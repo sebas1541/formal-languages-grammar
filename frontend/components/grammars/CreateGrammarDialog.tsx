@@ -107,6 +107,7 @@ export function CreateGrammarDialog({ open, onOpenChange }: CreateGrammarDialogP
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               placeholder="Ej: Expresiones Aritméticas"
+              className="bg-[#F5F1ED] border-[#191918]"
               required
             />
           </div>
@@ -120,8 +121,8 @@ export function CreateGrammarDialog({ open, onOpenChange }: CreateGrammarDialogP
                 onClick={() => setGrammarType("type_2")}
                 className={`flex-1 p-3 rounded-lg border-2 transition-all ${
                   grammarType === "type_2"
-                    ? "border-[#D4816B] bg-[#F5EBE6]"
-                    : "border-[#E0D9D3] hover:border-[#D4C9BF]"
+                    ? "border-[#191918] bg-[#E8C4B8]"
+                    : "border-[#191918] bg-[#F5F1ED] hover:bg-[#E8C4B8]/50"
                 }`}
               >
                 <div className="font-semibold">Tipo 2</div>
@@ -132,8 +133,8 @@ export function CreateGrammarDialog({ open, onOpenChange }: CreateGrammarDialogP
                 onClick={() => setGrammarType("type_3")}
                 className={`flex-1 p-3 rounded-lg border-2 transition-all ${
                   grammarType === "type_3"
-                    ? "border-[#B89A7A] bg-[#E8E0D0]"
-                    : "border-[#E0D9D3] hover:border-[#D4C9BF]"
+                    ? "border-[#191918] bg-[#D8C6B0]"
+                    : "border-[#191918] bg-[#F5F1ED] hover:bg-[#D8C6B0]/50"
                 }`}
               >
                 <div className="font-semibold">Tipo 3</div>
@@ -155,6 +156,7 @@ export function CreateGrammarDialog({ open, onOpenChange }: CreateGrammarDialogP
                 })
               }
               placeholder="S, A, B"
+              className="bg-[#F5F1ED] border-[#191918]"
               required
             />
             <p className="text-xs text-gray-500">Separados por coma o espacio</p>
@@ -173,6 +175,7 @@ export function CreateGrammarDialog({ open, onOpenChange }: CreateGrammarDialogP
                 })
               }
               placeholder="a, b, 0, 1"
+              className="bg-[#F5F1ED] border-[#191918]"
               required
             />
             <p className="text-xs text-gray-500">Separados por coma o espacio</p>
@@ -186,6 +189,7 @@ export function CreateGrammarDialog({ open, onOpenChange }: CreateGrammarDialogP
               value={formData.start_symbol}
               onChange={(e) => setFormData({ ...formData, start_symbol: e.target.value })}
               placeholder="S"
+              className="bg-[#F5F1ED] border-[#191918]"
               required
             />
           </div>
@@ -211,7 +215,7 @@ export function CreateGrammarDialog({ open, onOpenChange }: CreateGrammarDialogP
                     value={prod.left}
                     onChange={(e) => updateProduction(index, "left", e.target.value)}
                     placeholder="S"
-                    className="w-20"
+                    className="w-20 bg-[#F5F1ED] border-[#191918]"
                     required
                   />
                   <span className="text-gray-500">→</span>
@@ -219,7 +223,7 @@ export function CreateGrammarDialog({ open, onOpenChange }: CreateGrammarDialogP
                     value={prod.right.join(" ")}
                     onChange={(e) => updateProduction(index, "right", e.target.value)}
                     placeholder="a S b"
-                    className="flex-1"
+                    className="flex-1 bg-[#F5F1ED] border-[#191918]"
                     required
                   />
                   {formData.productions.length > 1 && (

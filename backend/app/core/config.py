@@ -14,6 +14,7 @@ class Settings(BaseSettings):
     app_name: str = "Formal Grammar API"
     api_prefix: str = "/api/v1"
     database_url: str = "sqlite:///./app.db"
+    gemini_api_key: str = ""
 
 
 @lru_cache(maxsize=1)

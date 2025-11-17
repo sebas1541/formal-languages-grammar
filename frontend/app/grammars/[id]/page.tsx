@@ -10,9 +10,11 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { FiCheck, FiX, FiZap, FiCode, FiChevronLeft } from "react-icons/fi";
+import { Brain } from "lucide-react";
 import Link from "next/link";
 import { DerivationTree } from "@/components/grammars/DerivationTree";
 import { PageTransition } from "@/components/ui/page-transition";
+import { AIExplanationDialog } from "@/components/grammars/AIExplanationDialog";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -22,6 +24,7 @@ export default function GrammarDetailPage({ params }: PageProps) {
   const [inputString, setInputString] = useState("");
   const [parseResult, setParseResult] = useState<any>(null);
   const [generatedStrings, setGeneratedStrings] = useState<string[]>([]);
+  const [aiDialogOpen, setAiDialogOpen] = useState(false);
   
   // Unwrap params
   const [id, setId] = useState<string | null>(null);
@@ -108,11 +111,12 @@ export default function GrammarDetailPage({ params }: PageProps) {
       <div className="container mx-auto px-4 sm:px-6 py-8">
         {/* Back button and header */}
         <div className="mb-6">
-          <Link href="/grammars">
-            <Button variant="ghost" size="sm" className="mb-4">
-              <FiChevronLeft className="mr-2 h-4 w-4" />
+          <Link href="/grammars" className="inline-flex items-center gap-2 text-[#2D2925] hover:text-[#191918] transition-colors group mb-4">
+            <FiChevronLeft className="h-4 w-4" />
+            <span className="relative">
               Volver a Gramáticas
-            </Button>
+              <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#191918] group-hover:w-full transition-all duration-300"></span>
+            </span>
           </Link>
           <div className="flex items-start justify-between">
             <div>
@@ -177,6 +181,28 @@ export default function GrammarDetailPage({ params }: PageProps) {
               </CardContent>
             </Card>
 
+            {/* AI Explanation */}
+            <Card className="bg-white/90 backdrop-blur-sm border-2 border-[#191918]">
+              <CardHeader>
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <Brain className="h-5 w-5 text-[#191918]" />
+                  Explicación con IA
+                </CardTitle>
+                <CardDescription>
+                  Chat con Gemini AI sobre esta gramática
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Button
+                  onClick={() => setAiDialogOpen(true)}
+                  className="w-full bg-[#191918] hover:bg-[#2D2925] text-white shadow-sm transition-colors"
+                >
+                  <Brain className="mr-2 h-4 w-4" />
+                  Abrir Chat con IA
+                </Button>
+              </CardContent>
+            </Card>
+
             {/* Generate Strings */}
             <Card className="bg-white/90 backdrop-blur-sm border-2 border-[#191918]">
               <CardHeader>
@@ -238,7 +264,7 @@ export default function GrammarDetailPage({ params }: PageProps) {
                       onChange={(e) => setInputString(e.target.value)}
                       placeholder="Ingresa la cadena con espacios entre tokens (ej: a b b a, id + id)"
                       onKeyDown={(e) => e.key === "Enter" && handleParse()}
-                      className="font-mono"
+                      className="font-mono bg-[#F5F1ED] border-[#191918]"
                     />
                   </div>
                   <Button
@@ -300,6 +326,15 @@ export default function GrammarDetailPage({ params }: PageProps) {
         </div>
       </div>
       </PageTransition>
+
+      {/* AI Explanation Dialog */}
+      {grammar && (
+        <AIExplanationDialog
+          open={aiDialogOpen}
+          onOpenChange={setAiDialogOpen}
+          grammar={grammar}
+        />
+      )}
     </div>
   );
 }

@@ -52,10 +52,10 @@ export function SeedGrammarsDialog({ open, onOpenChange }: SeedGrammarsDialogPro
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+      <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-[#FFFDFB] border-2 border-[#191918]">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 text-2xl">
-            <FiDatabase className="h-6 w-6 text-[#D4816B]" />
+            <FiDatabase className="h-6 w-6 text-[#191918]" />
             Gramáticas de Ejemplo
           </DialogTitle>
           <DialogDescription>
@@ -81,8 +81,8 @@ export function SeedGrammarsDialog({ open, onOpenChange }: SeedGrammarsDialogPro
             {grammarSeeds.map((seed, index) => (
               <Card
                 key={seed.name}
-                className={`bg-[#FFFDFB]/90 backdrop-blur-sm border-[#E0D9D3] transition-all duration-300 hover:shadow-md hover:border-[#D4816B]/30 animate-in fade-in slide-in-from-bottom-3 ${
-                  isImported(seed.name) ? "border-[#A8D5A8] bg-[#E8F5E8]/50" : ""
+                className={`bg-white/90 backdrop-blur-sm border-2 border-[#191918] transition-all duration-300 hover:shadow-md animate-in fade-in slide-in-from-bottom-3 ${
+                  isImported(seed.name) ? "bg-[#E8F5E8]/80" : ""
                 }`}
                 style={{ animationDelay: `${index * 50}ms`, animationFillMode: 'backwards' }}
               >
@@ -112,7 +112,7 @@ export function SeedGrammarsDialog({ open, onOpenChange }: SeedGrammarsDialogPro
                 </CardHeader>
                 <CardContent className="space-y-3">
                   {/* Grammar Info */}
-                  <div className="bg-[#F5F1ED] rounded-xl p-2 text-xs space-y-1">
+                  <div className="bg-[#F5F1ED] rounded-xl p-2 text-xs space-y-1 border border-[#191918]">
                     <div>
                       <span className="font-medium">Terminales:</span>{" "}
                       <span className="font-mono">{seed.terminals.join(", ")}</span>
@@ -160,8 +160,11 @@ export function SeedGrammarsDialog({ open, onOpenChange }: SeedGrammarsDialogPro
                   <Button
                     onClick={() => handleImport(seed)}
                     disabled={importMutation.isPending || isImported(seed.name)}
-                    variant={isImported(seed.name) ? "outline" : "default"}
-                    className="w-full"
+                    className={`w-full ${
+                      isImported(seed.name)
+                        ? "bg-[#E8F5E8] text-[#3A7A3A] border-2 border-[#A8D5A8] hover:bg-[#E8F5E8]"
+                        : "bg-[#191918] hover:bg-[#2D2925] text-white"
+                    }`}
                     size="sm"
                   >
                     {isImported(seed.name) ? (

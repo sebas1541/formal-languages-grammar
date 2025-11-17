@@ -94,4 +94,23 @@ export const grammarApi = {
     });
     return response.data;
   },
+
+  // Get AI explanation
+  explain: async (id: number): Promise<string> => {
+    const response = await apiClient.get(`/grammars/${id}/explain`);
+    return response.data.text;
+  },
+
+  // Ask a question about the grammar
+  ask: async (
+    id: number,
+    question: string,
+    context: string
+  ): Promise<string> => {
+    const response = await apiClient.post(`/grammars/${id}/ask`, {
+      question,
+      context,
+    });
+    return response.data.text;
+  },
 };
