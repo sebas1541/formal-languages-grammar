@@ -50,14 +50,14 @@ export default function GrammarsPage() {
 
   const getGrammarTypeBadge = (type: string) => {
     return type === "type_2" ? (
-      <Badge className="bg-blue-100 text-blue-800 border-blue-200">Tipo 2</Badge>
+      <Badge className="bg-[#E8C4B8] text-[#6D4535] border-[#D4816B]">Tipo 2</Badge>
     ) : (
-      <Badge className="bg-green-100 text-green-800 border-green-200">Tipo 3</Badge>
+      <Badge className="bg-[#D8C6B0] text-[#5A4A3A] border-[#B89A7A]">Tipo 3</Badge>
     );
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50/30">
+    <div className="min-h-screen bg-[#F0EEE6]">
       <AppHeader />
       <PageTransition>
 
@@ -65,40 +65,38 @@ export default function GrammarsPage() {
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Gramáticas</h1>
-            <p className="text-gray-600">Gestiona tus gramáticas formales</p>
+            <h1 className="text-3xl font-bold text-[#2D2925] mb-2">Gramáticas</h1>
+            <p className="text-[#5A524C]">Gestiona tus gramáticas formales</p>
           </div>
-          <div className="flex gap-3">
-            <Button
+          <div className="flex gap-6">
+            <button
               onClick={() => setSeedDialogOpen(true)}
-              variant="outline"
-              size="lg"
+              className="relative group text-[#191918] font-semibold"
             >
-              <FiDatabase className="mr-2 h-5 w-5" />
               Ejemplos
-            </Button>
-            <Button
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#191918] group-hover:w-full transition-all duration-300 ease-out"></span>
+            </button>
+            <button
               onClick={() => setCreateDialogOpen(true)}
-              className="bg-blue-500 hover:bg-blue-600"
-              size="lg"
+              className="relative group text-[#191918] font-semibold"
             >
-              <FiPlus className="mr-2 h-5 w-5" />
               Nueva Gramática
-            </Button>
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#191918] group-hover:w-full transition-all duration-300 ease-out"></span>
+            </button>
           </div>
         </div>
 
         {/* Loading State */}
         {isLoading && (
           <div className="text-center py-12">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-            <p className="mt-4 text-gray-600">Cargando gramáticas...</p>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#D4816B] mx-auto"></div>
+            <p className="mt-4 text-[#5A524C]">Cargando gramáticas...</p>
           </div>
         )}
 
         {/* Error State */}
         {error && (
-          <div className="bg-red-50 border border-red-200 rounded-2xl p-6 text-center">
+          <div className="bg-[#FFF5F0] border border-[#E8A89A] rounded-2xl p-6 text-center">
             <p className="text-red-800">Error al cargar gramáticas: {error.message}</p>
           </div>
         )}
@@ -106,11 +104,11 @@ export default function GrammarsPage() {
         {/* Empty State */}
         {!isLoading && !error && grammars?.length === 0 && (
           <div className="text-center py-12">
-            <div className="h-24 w-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <FiCode className="h-12 w-12 text-gray-400" />
+            <div className="h-24 w-24 bg-[#F0EBE6] rounded-full flex items-center justify-center mx-auto mb-4">
+              <FiCode className="h-12 w-12 text-[#9A6B5C]" />
             </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">No hay gramáticas</h3>
-            <p className="text-gray-600 mb-6">Crea tu primera gramática o importa ejemplos para comenzar</p>
+            <h3 className="text-xl font-semibold text-[#2D2925] mb-2">No hay gramáticas</h3>
+            <p className="text-[#5A524C] mb-6">Crea tu primera gramática o importa ejemplos para comenzar</p>
             <div className="flex gap-3 justify-center">
               <Button
                 onClick={() => setSeedDialogOpen(true)}
@@ -122,7 +120,7 @@ export default function GrammarsPage() {
               </Button>
               <Button
                 onClick={() => setCreateDialogOpen(true)}
-                className="bg-blue-500 hover:bg-blue-600"
+                className="bg-[#191918] hover:bg-[#2D2925] text-white shadow-sm"
                 size="lg"
               >
                 <FiPlus className="mr-2 h-5 w-5" />
@@ -138,7 +136,7 @@ export default function GrammarsPage() {
             {grammars.map((grammar, index) => (
               <Card
                 key={grammar.id}
-                className="bg-white/80 backdrop-blur-sm border-gray-200/50 hover:shadow-md hover:border-gray-300/50 transition-all duration-300 animate-in fade-in slide-in-from-bottom-4"
+                className="bg-white/90 backdrop-blur-sm border-2 border-[#191918] hover:shadow-lg hover:shadow-black/5 transition-all duration-300 animate-in fade-in slide-in-from-bottom-4"
                 style={{ animationDelay: `${index * 50}ms`, animationFillMode: 'backwards' }}
               >
                 <CardHeader>
@@ -153,7 +151,7 @@ export default function GrammarsPage() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   {/* Grammar Info */}
-                  <div className="bg-gray-50 rounded-xl p-3 text-sm space-y-1">
+                  <div className="bg-[#F5F1ED] border border-[#191918] rounded-xl p-3 text-sm space-y-1">
                     <div><span className="font-medium">Inicio:</span> {grammar.start_symbol}</div>
                     <div><span className="font-medium">Terminales:</span> {grammar.terminals.join(", ")}</div>
                   </div>
@@ -161,7 +159,7 @@ export default function GrammarsPage() {
                   {/* Actions */}
                   <div className="flex gap-2">
                     <Link href={`/grammars/${grammar.id}`} className="flex-1 group">
-                      <Button variant="outline" className="w-full group-hover:border-blue-400 group-hover:text-blue-600 transition-all duration-300" size="sm">
+                      <Button variant="outline" className="w-full group-hover:border-[#D4816B] group-hover:text-[#D4816B] transition-all duration-300" size="sm">
                         <FiEdit className="mr-2 h-4 w-4" />
                         Analizar
                       </Button>

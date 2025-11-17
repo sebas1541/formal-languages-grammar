@@ -55,7 +55,7 @@ export function SeedGrammarsDialog({ open, onOpenChange }: SeedGrammarsDialogPro
       <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 text-2xl">
-            <FiDatabase className="h-6 w-6 text-blue-500" />
+            <FiDatabase className="h-6 w-6 text-[#D4816B]" />
             Gramáticas de Ejemplo
           </DialogTitle>
           <DialogDescription>
@@ -69,7 +69,7 @@ export function SeedGrammarsDialog({ open, onOpenChange }: SeedGrammarsDialogPro
             <Button
               onClick={handleImportAll}
               disabled={importMutation.isPending || importedSeeds.size === grammarSeeds.length}
-              className="bg-blue-500 hover:bg-blue-600"
+              className="bg-[#191918] hover:bg-[#2D2925] text-white shadow-sm"
             >
               <FiDatabase className="mr-2 h-4 w-4" />
               Importar Todas ({grammarSeeds.length})
@@ -81,8 +81,8 @@ export function SeedGrammarsDialog({ open, onOpenChange }: SeedGrammarsDialogPro
             {grammarSeeds.map((seed, index) => (
               <Card
                 key={seed.name}
-                className={`bg-white/80 backdrop-blur-sm border-gray-200/50 transition-all duration-300 hover:shadow-md hover:border-gray-300/50 animate-in fade-in slide-in-from-bottom-3 ${
-                  isImported(seed.name) ? "border-green-400 bg-green-50/50" : ""
+                className={`bg-[#FFFDFB]/90 backdrop-blur-sm border-[#E0D9D3] transition-all duration-300 hover:shadow-md hover:border-[#D4816B]/30 animate-in fade-in slide-in-from-bottom-3 ${
+                  isImported(seed.name) ? "border-[#A8D5A8] bg-[#E8F5E8]/50" : ""
                 }`}
                 style={{ animationDelay: `${index * 50}ms`, animationFillMode: 'backwards' }}
               >
@@ -92,7 +92,7 @@ export function SeedGrammarsDialog({ open, onOpenChange }: SeedGrammarsDialogPro
                       <CardTitle className="text-base flex items-center gap-2">
                         {seed.name}
                         {isImported(seed.name) && (
-                          <FiCheck className="h-4 w-4 text-green-600" />
+                          <FiCheck className="h-4 w-4 text-[#3A7A3A]" />
                         )}
                       </CardTitle>
                       <CardDescription className="text-xs mt-1">
@@ -102,8 +102,8 @@ export function SeedGrammarsDialog({ open, onOpenChange }: SeedGrammarsDialogPro
                     <Badge
                       className={
                         seed.grammar_type === "type_2"
-                          ? "bg-blue-100 text-blue-800 border-blue-200"
-                          : "bg-green-100 text-green-800 border-green-200"
+                          ? "bg-[#E8C4B8] text-[#6D4535] border-[#D4816B]"
+                          : "bg-[#D8C6B0] text-[#5A4A3A] border-[#B89A7A]"
                       }
                     >
                       {seed.grammar_type === "type_2" ? "Tipo 2" : "Tipo 3"}
@@ -112,7 +112,7 @@ export function SeedGrammarsDialog({ open, onOpenChange }: SeedGrammarsDialogPro
                 </CardHeader>
                 <CardContent className="space-y-3">
                   {/* Grammar Info */}
-                  <div className="bg-gray-50 rounded-xl p-2 text-xs space-y-1">
+                  <div className="bg-[#F5F1ED] rounded-xl p-2 text-xs space-y-1">
                     <div>
                       <span className="font-medium">Terminales:</span>{" "}
                       <span className="font-mono">{seed.terminals.join(", ")}</span>
@@ -132,7 +132,7 @@ export function SeedGrammarsDialog({ open, onOpenChange }: SeedGrammarsDialogPro
                         {seed.examples.accepted.slice(0, 3).map((ex, idx) => (
                           <span
                             key={idx}
-                            className="px-2 py-0.5 bg-green-50 text-green-700 rounded-lg font-mono text-xs"
+                            className="px-2 py-0.5 bg-[#E8F5E8] text-[#3A7A3A] rounded-lg font-mono text-xs"
                           >
                             {ex === "ε" ? "ε" : ex}
                           </span>
@@ -140,14 +140,14 @@ export function SeedGrammarsDialog({ open, onOpenChange }: SeedGrammarsDialogPro
                       </div>
                     </div>
                     <div className="text-xs">
-                      <div className="font-medium text-gray-700 mb-1">
+                      <div className="font-medium text-[#5A524C] mb-1">
                         ✗ Rechaza (ejemplos):
                       </div>
                       <div className="flex flex-wrap gap-1">
                         {seed.examples.rejected.slice(0, 3).map((ex, idx) => (
                           <span
                             key={idx}
-                            className="px-2 py-0.5 bg-red-50 text-red-700 rounded-lg font-mono text-xs"
+                            className="px-2 py-0.5 bg-[#FFF5F0] text-[#C75744] rounded-lg font-mono text-xs"
                           >
                             {ex}
                           </span>
@@ -178,7 +178,7 @@ export function SeedGrammarsDialog({ open, onOpenChange }: SeedGrammarsDialogPro
             ))}
           </div>
         </div>
-      </DialogContent>
+        </DialogContent>
     </Dialog>
   );
 }

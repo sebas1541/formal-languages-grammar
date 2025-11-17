@@ -1,40 +1,52 @@
 @import "tailwindcss";
 
-@theme {
-  /* Color variables using HSL */
-  --color-background: oklch(100% 0 0);
-  --color-foreground: oklch(9.8% 0 0);
-  
-  --color-card: oklch(100% 0 0);
-  --color-card-foreground: oklch(9.8% 0 0);
-  
-  --color-popover: oklch(100% 0 0);
-  --color-popover-foreground: oklch(9.8% 0 0);
-  
-  --color-primary: oklch(11.2% 0.047 264);
-  --color-primary-foreground: oklch(98% 0 0);
-  
-  --color-secondary: oklch(96.1% 0.004 264);
-  --color-secondary-foreground: oklch(11.2% 0.047 264);
-  
-  --color-muted: oklch(96.1% 0.004 264);
-  --color-muted-foreground: oklch(46.9% 0.016 264);
-  
-  --color-accent: oklch(96.1% 0.004 264);
-  --color-accent-foreground: oklch(11.2% 0.047 264);
-  
-  --color-destructive: oklch(60.2% 0.242 29);
-  --color-destructive-foreground: oklch(98% 0 0);
-  
-  --color-border: oklch(91.4% 0.008 264);
-  --color-input: oklch(91.4% 0.008 264);
-  --color-ring: oklch(9.8% 0 0);
-  
-  --radius-lg: 0.5rem;
-  --radius-md: calc(0.5rem - 2px);
-  --radius-sm: calc(0.5rem - 4px);
+@layer base {
+  body {
+    font-family: var(--font-dm-sans), system-ui, -apple-system, sans-serif;
+  }
 }
 
-body {
-  font-family: system-ui, -apple-system, sans-serif;
+@theme {
+  /* Anthropic-inspired warm palette with pixel art vibes */
+  /* Background - warm cream like paper */
+  --color-background: oklch(97% 0.01 60); /* #FAF7F4 */
+  --color-foreground: oklch(20% 0.01 40); /* #2D2925 warm brown */
+  
+  /* Cards - slightly warmer white */
+  --color-card: oklch(99% 0.005 50); /* #FFFDFB */
+  --color-card-foreground: oklch(20% 0.01 40);
+  
+  /* Popovers */
+  --color-popover: oklch(99% 0.005 50);
+  --color-popover-foreground: oklch(20% 0.01 40);
+  
+  /* Primary - Anthropic warm black */
+  --color-primary: oklch(18% 0.01 40); /* #191918 */
+  --color-primary-foreground: oklch(99% 0.005 50);
+  
+  /* Secondary - warm coral/terracotta */
+  --color-secondary: oklch(68% 0.12 45); /* #D4816B */
+  --color-secondary-foreground: oklch(99% 0.005 50);
+  
+  /* Muted - light warm beige */
+  --color-muted: oklch(94% 0.01 55); /* #F0EBE6 */
+  --color-muted-foreground: oklch(45% 0.01 40);
+  
+  /* Accent - warm orange */
+  --color-accent: oklch(72% 0.14 50); /* #E8956B */
+  --color-accent-foreground: oklch(20% 0.01 40);
+  
+  /* Destructive - warm red */
+  --color-destructive: oklch(55% 0.2 25);
+  --color-destructive-foreground: oklch(99% 0.005 50);
+  
+  /* Borders - warm gray */
+  --color-border: oklch(88% 0.01 50); /* #E0D9D3 */
+  --color-input: oklch(88% 0.01 50);
+  --color-ring: oklch(72% 0.14 50); /* warm orange ring */
+  
+  /* Softer radius for handcrafted feel */
+  --radius-lg: 0.75rem;
+  --radius-md: calc(0.75rem - 2px);
+  --radius-sm: calc(0.75rem - 4px);
 }

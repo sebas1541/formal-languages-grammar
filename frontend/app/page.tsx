@@ -1,29 +1,23 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { FiBook, FiCode, FiFileText, FiZap } from "react-icons/fi";
+import { Binary, Sparkles, GitBranch, Zap } from "lucide-react";
 import { PageTransition } from "@/components/ui/page-transition";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50/30">
+    <div className="min-h-screen bg-[#F0EEE6]">
       {/* Header */}
-      <header className="border-b border-gray-200/50 bg-white/90 backdrop-blur-md sticky top-0 z-50 shadow-sm">
-        <div className="container mx-auto px-4 sm:px-6 py-4">
+      <header className="bg-[#F0EEE6] sticky top-0 z-50 shadow-none">
+        <div className="px-4 sm:px-8 lg:px-12 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="h-10 w-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center">
-                <FiCode className="h-6 w-6 text-white" />
-              </div>
-              <div>
-                <h1 className="text-xl font-bold text-gray-900">Analizador Sintáctico</h1>
-                <p className="text-xs text-gray-600">Lenguajes Formales</p>
-              </div>
-            </div>
-            <Link href="/grammars">
-              <Button className="bg-blue-500 hover:bg-blue-600">
-                Comenzar
-              </Button>
+            <Link href="/" className="flex items-center hover:opacity-80 transition-all duration-300">
+              <span className="text-3xl font-black text-[#191918] tracking-tight">ForGram</span>
+            </Link>
+            <Link href="/grammars" className="relative group">
+              <span className="text-[#191918] font-semibold">Comenzar</span>
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#191918] group-hover:w-full transition-all duration-300 ease-out"></span>
             </Link>
           </div>
         </div>
@@ -31,90 +25,62 @@ export default function Home() {
 
       {/* Hero Section */}
       <PageTransition>
-      <main className="container mx-auto px-4 sm:px-6 py-16">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
-            Parser y Generador de Lenguajes
-          </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Analizador sintáctico para Gramáticas Tipo 2 (Libres de Contexto) y Tipo 3 (Regulares)
-          </p>
-        </div>
+      <main className="px-4 sm:px-8 lg:px-12 py-20">
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-20">
+            <h2 className="text-5xl sm:text-6xl font-bold text-[#2D2925] mb-6 tracking-tight leading-tight">
+              Analizador de<br />gramáticas formales
+            </h2>
+            <p className="text-xl text-[#5A524C] max-w-xl leading-relaxed mb-8">
+              Trabaja con gramáticas Tipo 2 (libres de contexto) y Tipo 3 (regulares). 
+              Analiza cadenas, visualiza árboles de derivación y explora lenguajes formales.
+            </p>
+            <Link href="/grammars">
+              <Button size="lg" className="bg-[#191918] hover:bg-[#2D2925] text-white shadow-sm rounded-xl px-8 py-6 text-lg">
+                Comenzar ahora
+              </Button>
+            </Link>
+          </div>
 
-        {/* Features Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          <Card className="bg-white/80 backdrop-blur-sm border-gray-200/50 hover:shadow-md hover:border-gray-300/50 transition-all duration-300 animate-in fade-in slide-in-from-bottom-4" style={{ animationDelay: '100ms', animationFillMode: 'backwards' }}>
-            <CardHeader>
-              <div className="h-12 w-12 bg-blue-100 rounded-2xl flex items-center justify-center mb-4">
-                <FiFileText className="h-6 w-6 text-blue-600" />
-              </div>
-              <CardTitle className="text-lg">Definir Gramática</CardTitle>
-              <CardDescription>
-                Define gramáticas formales especificando N, T, P y S
-              </CardDescription>
-            </CardHeader>
-          </Card>
+          {/* Features Grid */}
+          <div className="grid md:grid-cols-3 gap-6 mb-16">
+            <Card className="bg-[#E3DACC] border-2 border-[#191918] hover:shadow-md transition-all duration-300 p-8 rounded-2xl">
+              <CardHeader className="p-0">
+                <CardTitle className="text-xl mb-3 font-semibold text-[#2D2925]">Crear gramáticas</CardTitle>
+                <CardDescription className="text-base text-[#5A524C] leading-relaxed">
+                  Define terminales, no terminales y producciones para construir gramáticas formales.
+                </CardDescription>
+              </CardHeader>
+            </Card>
 
-          <Card className="bg-white/80 backdrop-blur-sm border-gray-200/50 hover:shadow-md hover:border-gray-300/50 transition-all duration-300 animate-in fade-in slide-in-from-bottom-4" style={{ animationDelay: '200ms', animationFillMode: 'backwards' }}>
-            <CardHeader>
-              <div className="h-12 w-12 bg-green-100 rounded-2xl flex items-center justify-center mb-4">
-                <FiZap className="h-6 w-6 text-green-600" />
-              </div>
-              <CardTitle className="text-lg">Analizar Cadenas</CardTitle>
-              <CardDescription>
-                Determina si una cadena pertenece al lenguaje
-              </CardDescription>
-            </CardHeader>
-          </Card>
+            <Card className="bg-[#BCD1CA] border-2 border-[#191918] hover:shadow-md transition-all duration-300 p-8 rounded-2xl">
+              <CardHeader className="p-0">
+                <CardTitle className="text-xl mb-3 font-semibold text-[#2D2925]">Analizar cadenas</CardTitle>
+                <CardDescription className="text-base text-[#5A524C] leading-relaxed">
+                  Verifica si una cadena pertenece al lenguaje y visualiza el proceso.
+                </CardDescription>
+              </CardHeader>
+            </Card>
 
-          <Card className="bg-white/80 backdrop-blur-sm border-gray-200/50 hover:shadow-md hover:border-gray-300/50 transition-all duration-300 animate-in fade-in slide-in-from-bottom-4" style={{ animationDelay: '300ms', animationFillMode: 'backwards' }}>
-            <CardHeader>
-              <div className="h-12 w-12 bg-purple-100 rounded-2xl flex items-center justify-center mb-4">
-                <FiBook className="h-6 w-6 text-purple-600" />
-              </div>
-              <CardTitle className="text-lg">Árbol de Derivación</CardTitle>
-              <CardDescription>
-                Visualiza el árbol sintáctico de cadenas aceptadas
-              </CardDescription>
-            </CardHeader>
-          </Card>
-
-          <Card className="bg-white/80 backdrop-blur-sm border-gray-200/50 hover:shadow-md hover:border-gray-300/50 transition-all duration-300 animate-in fade-in slide-in-from-bottom-4" style={{ animationDelay: '400ms', animationFillMode: 'backwards' }}>
-            <CardHeader>
-              <div className="h-12 w-12 bg-orange-100 rounded-2xl flex items-center justify-center mb-4">
-                <FiCode className="h-6 w-6 text-orange-600" />
-              </div>
-              <CardTitle className="text-lg">Generar Cadenas</CardTitle>
-              <CardDescription>
-                Genera las cadenas más cortas del lenguaje
-              </CardDescription>
-            </CardHeader>
-          </Card>
-        </div>
-
-        {/* CTA Section */}
-        <div className="bg-gradient-to-r from-blue-50/80 to-purple-50/80 border border-blue-200/30 rounded-2xl p-8 text-center backdrop-blur-sm animate-in fade-in slide-in-from-bottom-4 duration-700">
-          <h3 className="text-2xl font-bold text-gray-900 mb-3">
-            ¿Listo para comenzar?
-          </h3>
-          <p className="text-gray-600 mb-6 max-w-xl mx-auto">
-            Crea tu primera gramática y comienza a analizar cadenas de forma visual e interactiva
-          </p>
-          <Link href="/grammars">
-            <Button size="lg" className="bg-blue-500 hover:bg-blue-600">
-              Ir a Gramáticas
-            </Button>
-          </Link>
+            <Card className="bg-[#CBCADC] border-2 border-[#191918] hover:shadow-md transition-all duration-300 p-8 rounded-2xl">
+              <CardHeader className="p-0">
+                <CardTitle className="text-xl mb-3 font-semibold text-[#2D2925]">Árboles de derivación</CardTitle>
+                <CardDescription className="text-base text-[#5A524C] leading-relaxed">
+                  Visualiza el árbol sintáctico generado durante el análisis.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          </div>
         </div>
       </main>
       </PageTransition>
 
       {/* Footer */}
-      <footer className="border-t border-gray-200/50 mt-16">
-        <div className="container mx-auto px-4 sm:px-6 py-8">
-          <div className="text-center text-sm text-gray-600">
-            <p>Universidad Pedagógica y Tecnológica de Colombia - UPTC</p>
-            <p className="mt-1">Facultad de Ingeniería • Lenguajes Formales</p>
+      <footer className="border-t border-[#E0D9D3]/30 mt-20 bg-[#F0EEE6]">
+        <div className="px-4 sm:px-8 lg:px-12 py-12">
+          <div className="max-w-6xl mx-auto text-sm text-[#5A524C]">
+            <p className="font-medium text-[#2D2925] mb-2">Universidad Pedagógica y Tecnológica de Colombia</p>
+            <p>Facultad de Ingeniería • Lenguajes Formales</p>
           </div>
         </div>
       </footer>

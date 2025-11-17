@@ -68,12 +68,12 @@ export default function GrammarDetailPage({ params }: PageProps) {
 
   if (isLoading || !id) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50/30">
+      <div className="min-h-screen bg-[#F0EEE6]">
         <AppHeader />
         <div className="container mx-auto px-4 sm:px-6 py-8">
           <div className="text-center py-12">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-            <p className="mt-4 text-gray-600">Cargando gramática...</p>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#D4816B] mx-auto"></div>
+            <p className="mt-4 text-[#5A524C]">Cargando gramática...</p>
           </div>
         </div>
       </div>
@@ -82,11 +82,11 @@ export default function GrammarDetailPage({ params }: PageProps) {
 
   if (!grammar) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50/30">
+      <div className="min-h-screen bg-[#F0EEE6]">
         <AppHeader />
         <div className="container mx-auto px-4 sm:px-6 py-8">
           <div className="text-center py-12">
-            <p className="text-red-600">Gramática no encontrada</p>
+            <p className="text-[#C75744]">Gramática no encontrada</p>
           </div>
         </div>
       </div>
@@ -95,14 +95,14 @@ export default function GrammarDetailPage({ params }: PageProps) {
 
   const getGrammarTypeBadge = (type: string) => {
     return type === "type_2" ? (
-      <Badge className="bg-blue-100 text-blue-800 border-blue-200">Tipo 2 - CFG</Badge>
+      <Badge className="bg-[#E8C4B8] text-[#6D4535] border-[#D4816B]">Tipo 2 - CFG</Badge>
     ) : (
-      <Badge className="bg-green-100 text-green-800 border-green-200">Tipo 3 - Regular</Badge>
+      <Badge className="bg-[#D8C6B0] text-[#5A4A3A] border-[#B89A7A]">Tipo 3 - Regular</Badge>
     );
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50/30">
+    <div className="min-h-screen bg-[#F0EEE6]">
       <AppHeader />
       <PageTransition>
       <div className="container mx-auto px-4 sm:px-6 py-8">
@@ -116,8 +116,8 @@ export default function GrammarDetailPage({ params }: PageProps) {
           </Link>
           <div className="flex items-start justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">{grammar.name}</h1>
-              <p className="text-gray-600">
+              <h1 className="text-3xl font-bold text-[#2D2925] mb-2">{grammar.name}</h1>
+              <p className="text-[#5A524C]">
                 Analiza cadenas y genera lenguajes con esta gramática
               </p>
             </div>
@@ -129,45 +129,45 @@ export default function GrammarDetailPage({ params }: PageProps) {
           {/* Left column - Grammar info */}
           <div className="lg:col-span-1 space-y-6">
             {/* Grammar Details */}
-            <Card className="bg-white/80 backdrop-blur-sm border-gray-200/50">
+            <Card className="bg-white/90 backdrop-blur-sm border-2 border-[#191918]">
               <CardHeader>
                 <CardTitle className="text-lg">Detalles de la Gramática</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <Label className="text-sm font-medium text-gray-700">Símbolo Inicial</Label>
-                  <div className="mt-1 px-3 py-2 bg-gray-50 rounded-xl font-mono">
+                  <Label className="text-sm font-medium text-[#5A524C]">Símbolo Inicial</Label>
+                  <div className="mt-1 px-3 py-2 bg-[#F5F1ED] border border-[#191918] rounded-xl font-mono">
                     {grammar.start_symbol}
                   </div>
                 </div>
 
                 <div>
-                  <Label className="text-sm font-medium text-gray-700">
+                  <Label className="text-sm font-medium text-[#5A524C]">
                     No Terminales (N)
                   </Label>
-                  <div className="mt-1 px-3 py-2 bg-gray-50 rounded-xl">
+                  <div className="mt-1 px-3 py-2 bg-[#F5F1ED] border border-[#191918] rounded-xl">
                     {grammar.non_terminals.join(", ")}
                   </div>
                 </div>
 
                 <div>
-                  <Label className="text-sm font-medium text-gray-700">
+                  <Label className="text-sm font-medium text-[#5A524C]">
                     Terminales (T)
                   </Label>
-                  <div className="mt-1 px-3 py-2 bg-gray-50 rounded-xl">
+                  <div className="mt-1 px-3 py-2 bg-[#F5F1ED] border border-[#191918] rounded-xl">
                     {grammar.terminals.join(", ")}
                   </div>
                 </div>
 
                 <div>
-                  <Label className="text-sm font-medium text-gray-700">
+                  <Label className="text-sm font-medium text-[#5A524C]">
                     Producciones (P)
                   </Label>
                   <div className="mt-1 space-y-1 max-h-64 overflow-y-auto">
                     {grammar.productions.map((prod, idx) => (
                       <div
                         key={idx}
-                        className="px-3 py-2 bg-gray-50 rounded-xl font-mono text-sm"
+                        className="px-3 py-2 bg-[#F5F1ED] border border-[#191918] rounded-xl font-mono text-sm"
                       >
                         {prod.left} → {prod.right.join(" ")}
                       </div>
@@ -178,7 +178,7 @@ export default function GrammarDetailPage({ params }: PageProps) {
             </Card>
 
             {/* Generate Strings */}
-            <Card className="bg-white/80 backdrop-blur-sm border-gray-200/50">
+            <Card className="bg-white/90 backdrop-blur-sm border-2 border-[#191918]">
               <CardHeader>
                 <CardTitle className="text-lg flex items-center gap-2">
                   <FiCode className="h-5 w-5" />
@@ -192,7 +192,7 @@ export default function GrammarDetailPage({ params }: PageProps) {
                 <Button
                   onClick={handleGenerate}
                   disabled={generateMutation.isPending}
-                  className="w-full bg-purple-500 hover:bg-purple-600"
+                  className="w-full bg-[#9A6B5C] hover:bg-[#7D5649] text-white shadow-sm"
                 >
                   <FiZap className="mr-2 h-4 w-4" />
                   {generateMutation.isPending ? "Generando..." : "Generar Cadenas"}
@@ -200,14 +200,14 @@ export default function GrammarDetailPage({ params }: PageProps) {
 
                 {generatedStrings.length > 0 && (
                   <div className="space-y-2">
-                    <Label className="text-sm font-medium text-gray-700">
+                    <Label className="text-sm font-medium text-[#5A524C]">
                       Cadenas Generadas:
                     </Label>
                     <div className="max-h-64 overflow-y-auto space-y-1">
                       {generatedStrings.map((str, idx) => (
                         <div
                           key={idx}
-                          className="px-3 py-2 bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl font-mono text-sm animate-in fade-in slide-in-from-left-2 hover:bg-gradient-to-r hover:from-purple-100 hover:to-blue-100 transition-all duration-200"
+                          className="px-3 py-2 bg-gradient-to-r from-[#F0EBE6] to-[#F5F1ED] rounded-xl font-mono text-sm animate-in fade-in slide-in-from-left-2 hover:bg-gradient-to-r hover:from-[#E8DEDA] hover:to-[#EDE7E1] transition-all duration-200"
                           style={{ animationDelay: `${idx * 30}ms`, animationFillMode: 'backwards' }}
                         >
                           {str}
@@ -223,7 +223,7 @@ export default function GrammarDetailPage({ params }: PageProps) {
           {/* Right column - Parse and results */}
           <div className="lg:col-span-2 space-y-6">
             {/* Parse Input */}
-            <Card className="bg-white/80 backdrop-blur-sm border-gray-200/50">
+            <Card className="bg-white/90 backdrop-blur-sm border-2 border-[#191918]">
               <CardHeader>
                 <CardTitle className="text-lg">Analizar Cadena</CardTitle>
                 <CardDescription>
@@ -244,7 +244,7 @@ export default function GrammarDetailPage({ params }: PageProps) {
                   <Button
                     onClick={handleParse}
                     disabled={parseMutation.isPending || !inputString}
-                    className="bg-blue-500 hover:bg-blue-600"
+                    className="bg-[#191918] hover:bg-[#2D2925] text-white shadow-sm"
                   >
                     {parseMutation.isPending ? "Analizando..." : "Analizar"}
                   </Button>
@@ -254,25 +254,25 @@ export default function GrammarDetailPage({ params }: PageProps) {
                   <div
                     className={`p-4 rounded-xl border-2 animate-in fade-in slide-in-from-top-4 duration-500 ${
                       parseResult.accepted
-                        ? "bg-green-50 border-green-200"
-                        : "bg-red-50 border-red-200"
+                        ? "bg-[#E8F5E8] border-[#A8D5A8]"
+                        : "bg-[#FFF5F0] border-[#E8A89A]"
                     }`}
                   >
                     <div className="flex items-center gap-3 mb-2">
                       {parseResult.accepted ? (
-                        <FiCheck className="h-6 w-6 text-green-600" />
+                        <FiCheck className="h-6 w-6 text-[#3A7A3A]" />
                       ) : (
-                        <FiX className="h-6 w-6 text-red-600" />
+                        <FiX className="h-6 w-6 text-[#C75744]" />
                       )}
                       <div>
                         <p
                           className={`font-semibold ${
-                            parseResult.accepted ? "text-green-800" : "text-red-800"
+                            parseResult.accepted ? "text-[#3A7A3A]" : "text-[#C75744]"
                           }`}
                         >
                           {parseResult.accepted ? "✓ Cadena Aceptada" : "✗ Cadena Rechazada"}
                         </p>
-                        <p className="text-sm text-gray-600">
+                        <p className="text-sm text-[#5A524C]">
                           Pasos de derivación: {parseResult.steps}
                         </p>
                       </div>
@@ -284,7 +284,7 @@ export default function GrammarDetailPage({ params }: PageProps) {
 
             {/* Derivation Tree */}
             {parseResult && parseResult.accepted && parseResult.derivation_tree && (
-              <Card className="bg-white/80 backdrop-blur-sm border-gray-200/50">
+              <Card className="bg-white/90 backdrop-blur-sm border-2 border-[#191918]">
                 <CardHeader>
                   <CardTitle className="text-lg">Árbol de Derivación</CardTitle>
                   <CardDescription>

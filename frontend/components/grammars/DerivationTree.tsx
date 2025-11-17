@@ -60,7 +60,7 @@ export function DerivationTree({ tree }: DerivationTreeProps) {
         line.setAttribute("y1", (parentY + 20).toString());
         line.setAttribute("x2", x.toString());
         line.setAttribute("y2", (y - 20).toString());
-        line.setAttribute("stroke", "#94a3b8");
+        line.setAttribute("stroke", "#D4816B");
         line.setAttribute("stroke-width", "2");
         svg.appendChild(line);
       }
@@ -70,9 +70,9 @@ export function DerivationTree({ tree }: DerivationTreeProps) {
       circle.setAttribute("cx", x.toString());
       circle.setAttribute("cy", y.toString());
       circle.setAttribute("r", "25");
-      circle.setAttribute("fill", node.children && node.children.length > 0 ? "#3b82f6" : "#10b981");
-      circle.setAttribute("stroke", "#1e40af");
-      circle.setAttribute("stroke-width", "2");
+      circle.setAttribute("fill", node.children && node.children.length > 0 ? "#D4816B" : "#9A6B5C");
+      circle.setAttribute("stroke", "#B86850");
+      circle.setAttribute("stroke-width", "2.5");
       svg.appendChild(circle);
 
       // Draw symbol text
@@ -108,7 +108,7 @@ export function DerivationTree({ tree }: DerivationTreeProps) {
   }, [tree]);
 
   return (
-    <div className="w-full overflow-x-auto bg-gradient-to-br from-blue-50/50 to-purple-50/50 rounded-2xl p-6 border border-gray-200 animate-in fade-in slide-in-from-bottom-4 duration-700">
+    <div className="w-full overflow-x-auto bg-gradient-to-br from-[#F5F1ED]/50 to-[#F0EBE6]/50 rounded-2xl p-6 border border-[#E0D9D3] animate-in fade-in slide-in-from-bottom-4 duration-700">
       <div ref={canvasRef} className="min-h-[300px]" />
     </div>
   );

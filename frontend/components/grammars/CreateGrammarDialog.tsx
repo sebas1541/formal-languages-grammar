@@ -90,7 +90,7 @@ export function CreateGrammarDialog({ open, onOpenChange }: CreateGrammarDialogP
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[600px] bg-white/95 backdrop-blur-sm max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-[600px] bg-[#FFFDFB]/95 backdrop-blur-sm max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-2xl">Crear Nueva Gramática</DialogTitle>
           <DialogDescription>
@@ -120,8 +120,8 @@ export function CreateGrammarDialog({ open, onOpenChange }: CreateGrammarDialogP
                 onClick={() => setGrammarType("type_2")}
                 className={`flex-1 p-3 rounded-lg border-2 transition-all ${
                   grammarType === "type_2"
-                    ? "border-blue-500 bg-blue-50"
-                    : "border-gray-200 hover:border-gray-300"
+                    ? "border-[#D4816B] bg-[#F5EBE6]"
+                    : "border-[#E0D9D3] hover:border-[#D4C9BF]"
                 }`}
               >
                 <div className="font-semibold">Tipo 2</div>
@@ -132,8 +132,8 @@ export function CreateGrammarDialog({ open, onOpenChange }: CreateGrammarDialogP
                 onClick={() => setGrammarType("type_3")}
                 className={`flex-1 p-3 rounded-lg border-2 transition-all ${
                   grammarType === "type_3"
-                    ? "border-green-500 bg-green-50"
-                    : "border-gray-200 hover:border-gray-300"
+                    ? "border-[#B89A7A] bg-[#E8E0D0]"
+                    : "border-[#E0D9D3] hover:border-[#D4C9BF]"
                 }`}
               >
                 <div className="font-semibold">Tipo 3</div>
@@ -251,14 +251,14 @@ export function CreateGrammarDialog({ open, onOpenChange }: CreateGrammarDialogP
             </Button>
             <Button
               type="submit"
-              className="bg-blue-500 hover:bg-blue-600"
+              className="bg-[#191918] hover:bg-[#2D2925] text-white shadow-sm"
               disabled={createMutation.isPending}
             >
               {createMutation.isPending ? "Creando..." : "Crear Gramática"}
             </Button>
           </DialogFooter>
         </form>
-      </DialogContent>
+        </DialogContent>
     </Dialog>
   );
 }
