@@ -10,12 +10,15 @@ import { FiPlus, FiEdit, FiTrash2, FiDownload, FiUpload, FiCode, FiDatabase } fr
 import Link from "next/link";
 import { CreateGrammarDialog } from "@/components/grammars/CreateGrammarDialog";
 import { SeedGrammarsDialog } from "@/components/grammars/SeedGrammarsDialog";
+import { DeleteGrammarDialog } from "@/components/grammars/DeleteGrammarDialog";
 import { AppHeader } from "@/components/layout/AppHeader";
 import { PageTransition } from "@/components/ui/page-transition";
 
 export default function GrammarsPage() {
   const [createDialogOpen, setCreateDialogOpen] = useState(false);
   const [seedDialogOpen, setSeedDialogOpen] = useState(false);
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [grammarToDelete, setGrammarToDelete] = useState<Grammar | null>(null);
   const queryClient = useQueryClient();
 
   // Fetch grammars
@@ -175,9 +178,8 @@ export default function GrammarsPage() {
                       variant="outline"
                       size="sm"
                       onClick={() => {
-                        if (confirm(`¿Eliminar la gramática "${grammar.name}"?`)) {
-                          deleteMutation.mutate(grammar.id);
-                        }
+                        setGrammarToDelete(grammar);
+                        setDeleteDialogOpen(true);
                       }}
                       disabled={deleteMutation.isPending}
                     >
@@ -201,6 +203,21 @@ export default function GrammarsPage() {
       <SeedGrammarsDialog
         open={seedDialogOpen}
         onOpenChange={setSeedDialogOpen}
+      />
+
+      {/* Delete Grammar Dialog */}
+      <DeleteGrammarDialog
+        open={deleteDialogOpen}
+        onOpenChange={setDeleteDialogOpen}
+        grammar={grammarToDelete}
+        onConfirm={() => {
+          if (grammarToDelete) {
+            deleteMutation.mutate(grammarToDelete.id);
+            setDeleteDialogOpen(false);
+            setGrammarToDelete(null);
+          }
+        }}
+        isDeleting={deleteMutation.isPending}
       />
       </PageTransition>
     </div>
