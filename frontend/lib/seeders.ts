@@ -157,9 +157,10 @@ export const grammarSeeds: GrammarSeed[] = [
     terminals: ["/", "char"],
     start_symbol: "S",
     productions: [
-      { left: "S", right: ["/", "/", "A"] },
+      { left: "S", right: ["/", "A"] },
+      { left: "A", right: ["/"] },
       { left: "A", right: ["char", "A"] },
-      { left: "A", right: ["ε"] },
+      { left: "A", right: ["char"] },
     ],
     examples: {
       accepted: ["/ /", "/ / char", "/ / char char"],
