@@ -11,12 +11,14 @@ import Link from "next/link";
 import { CreateGrammarDialog } from "@/components/grammars/CreateGrammarDialog";
 import { SeedGrammarsDialog } from "@/components/grammars/SeedGrammarsDialog";
 import { DeleteGrammarDialog } from "@/components/grammars/DeleteGrammarDialog";
+import { ImportJSONDialog } from "@/components/grammars/ImportJSONDialog";
 import { AppHeader } from "@/components/layout/AppHeader";
 import { PageTransition } from "@/components/ui/page-transition";
 
 export default function GrammarsPage() {
   const [createDialogOpen, setCreateDialogOpen] = useState(false);
   const [seedDialogOpen, setSeedDialogOpen] = useState(false);
+  const [importDialogOpen, setImportDialogOpen] = useState(false);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [grammarToDelete, setGrammarToDelete] = useState<Grammar | null>(null);
   const queryClient = useQueryClient();
@@ -77,6 +79,13 @@ export default function GrammarsPage() {
               className="relative group text-[#191918] font-semibold"
             >
               Ejemplos
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#191918] group-hover:w-full transition-all duration-300 ease-out"></span>
+            </button>
+            <button
+              onClick={() => setImportDialogOpen(true)}
+              className="relative group text-[#191918] font-semibold"
+            >
+              Importar JSON
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#191918] group-hover:w-full transition-all duration-300 ease-out"></span>
             </button>
             <button
@@ -203,6 +212,12 @@ export default function GrammarsPage() {
       <SeedGrammarsDialog
         open={seedDialogOpen}
         onOpenChange={setSeedDialogOpen}
+      />
+
+      {/* Import JSON Dialog */}
+      <ImportJSONDialog
+        open={importDialogOpen}
+        onOpenChange={setImportDialogOpen}
       />
 
       {/* Delete Grammar Dialog */}

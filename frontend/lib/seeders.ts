@@ -134,11 +134,15 @@ export const grammarSeeds: GrammarSeed[] = [
     start_symbol: "S",
     productions: [
       { left: "S", right: ["letra", "A"] },
+      { left: "S", right: ["letra"] },
       { left: "S", right: ["_", "A"] },
+      { left: "S", right: ["_"] },
       { left: "A", right: ["letra", "A"] },
+      { left: "A", right: ["letra"] },
       { left: "A", right: ["digito", "A"] },
+      { left: "A", right: ["digito"] },
       { left: "A", right: ["_", "A"] },
-      { left: "A", right: ["ε"] },
+      { left: "A", right: ["_"] },
     ],
     examples: {
       accepted: ["letra", "_", "letra digito", "_ letra", "letra _ digito"],

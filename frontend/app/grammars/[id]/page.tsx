@@ -9,12 +9,14 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { FiCheck, FiX, FiZap, FiCode, FiChevronLeft } from "react-icons/fi";
+import { FiCheck, FiX, FiZap, FiCode, FiChevronLeft, FiEdit } from "react-icons/fi";
 import { Brain } from "lucide-react";
 import Link from "next/link";
 import { DerivationTree } from "@/components/grammars/DerivationTree";
 import { PageTransition } from "@/components/ui/page-transition";
 import { AIExplanationDialog } from "@/components/grammars/AIExplanationDialog";
+import { EditGrammarDialog } from "@/components/grammars/EditGrammarDialog";
+import { useToast } from "@/components/ui/toast";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -25,6 +27,8 @@ export default function GrammarDetailPage({ params }: PageProps) {
   const [parseResult, setParseResult] = useState<any>(null);
   const [generatedStrings, setGeneratedStrings] = useState<string[]>([]);
   const [aiDialogOpen, setAiDialogOpen] = useState(false);
+  const [editDialogOpen, setEditDialogOpen] = useState(false);
+  const { toast } = useToast();
   
   // Unwrap params
   const [id, setId] = useState<string | null>(null);
@@ -46,6 +50,27 @@ export default function GrammarDetailPage({ params }: PageProps) {
       grammarApi.parse(grammarId, input),
     onSuccess: (data) => {
       setParseResult(data);
+      if (data.accepted) {
+        toast({
+          title: "Cadena aceptada ✓",
+          description: "La cadena pertenece al lenguaje de la gramática",
+          variant: "success",
+        });
+      } else {
+        toast({
+          title: "Cadena rechazada",
+          description: "La cadena no pertenece al lenguaje de la gramática",
+          variant: "warning",
+        });
+      }
+    },
+    onError: (error: any) => {
+      const errorMessage = error.response?.data?.detail || error.message || "Error al analizar la cadena";
+      toast({
+        title: "Error en el análisis",
+        description: errorMessage,
+        variant: "error",
+      });
     },
   });
 
@@ -54,6 +79,19 @@ export default function GrammarDetailPage({ params }: PageProps) {
     mutationFn: (grammarId: number) => grammarApi.generate(grammarId, 10),
     onSuccess: (data) => {
       setGeneratedStrings(data.strings);
+      toast({
+        title: "Cadenas generadas",
+        description: `Se generaron ${data.strings.length} cadenas válidas`,
+        variant: "success",
+      });
+    },
+    onError: (error: any) => {
+      const errorMessage = error.response?.data?.detail || error.message || "Error al generar cadenas";
+      toast({
+        title: "Error en la generación",
+        description: errorMessage,
+        variant: "error",
+      });
     },
   });
 
@@ -244,6 +282,28 @@ export default function GrammarDetailPage({ params }: PageProps) {
                 )}
               </CardContent>
             </Card>
+
+            {/* Edit Grammar */}
+            <Card className="bg-white/90 backdrop-blur-sm border-2 border-[#191918]">
+              <CardHeader>
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <FiEdit className="h-5 w-5" />
+                  Editar Gramática
+                </CardTitle>
+                <CardDescription>
+                  Modifica los componentes de esta gramática
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Button
+                  onClick={() => setEditDialogOpen(true)}
+                  className="w-full bg-[#5A524C] hover:bg-[#3D3935] text-white shadow-sm transition-colors"
+                >
+                  <FiEdit className="mr-2 h-4 w-4" />
+                  Editar Gramática
+                </Button>
+              </CardContent>
+            </Card>
           </div>
 
           {/* Right column - Parse and results */}
@@ -332,6 +392,15 @@ export default function GrammarDetailPage({ params }: PageProps) {
         <AIExplanationDialog
           open={aiDialogOpen}
           onOpenChange={setAiDialogOpen}
+          grammar={grammar}
+        />
+      )}
+
+      {/* Edit Grammar Dialog */}
+      {grammar && (
+        <EditGrammarDialog
+          open={editDialogOpen}
+          onOpenChange={setEditDialogOpen}
           grammar={grammar}
         />
       )}
